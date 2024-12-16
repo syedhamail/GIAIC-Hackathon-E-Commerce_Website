@@ -19,3 +19,184 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/*HomePage Hero Section Next Section*/
+.HS{
+  background-color: #cde7ff;
+  width: full;
+  height: 510px;
+  margin-top: -13px;
+}
+
+/*Featured Products Items*/
+.item-bg{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.item-bg:hover{
+  color: #ffffff;
+  background-color: blue;
+}
+
+/*HomePage Shopex Offer*/
+.SO{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0 rgba(0, 0, 0, 0.19);
+}
+
+/*HomePage Discount Item*/
+.DI{
+  width: full;
+  height: 510px;
+}
+
+/*Footer*/
+.footer{
+  background-color: #cde7ff;
+}
+.footer2part{
+  background-color: #e7f3ff;
+}
+
+/*HeroSection ShopLeftSideBar ShopList ShopGridDefault*/
+.HS-SLSB-SL-SGD{
+  background-color: #cde7ff;
+  width: full;
+  height: auto;
+  margin-top: -13px;
+}
+
+/*ShopLeftSideBar ShopList RightSide Section*/
+.RS-S{
+  width: 1000px;
+}
+
+/*ShopLeftSideBar ShopList Products img*/
+.RS-P-img{
+  width: 210px;
+  height: 160px;
+  overflow: hidden;
+}
+
+/*Shop Grid Default img*/
+.SGD-P-img{
+  width: 210px;
+  height: 230px;
+  overflow: hidden;
+}
+
+/*Product Details Product Section Container width*/
+.PD-W{
+  margin-top: 100px;
+  margin-left: 45px;
+  width: 1250px;
+}
+
+/*Product Details Product Section Product img*/
+.PD-P-img1-2-3{
+  width: 155px;
+  height: 140px;
+  overflow: hidden;
+}
+.PD-P-img{
+  width: 400px;
+  height: 450px;
+  overflow: hidden;
+}
+
+/*Product Details Description Section*/
+.D-S{
+  background-color: #cde7ff;
+  width: full;
+  height: auto;
+  margin-top: 110px;
+}
+
+/*Product Details Related Products Section Heading*/
+.RP-S-H{
+  margin-left: 123px;
+  margin-bottom: 30px;
+}
+
+/*Product Details Related Products Section img*/
+.PD-RP-P-img{
+  width: 210px;
+  height: 270px;
+  overflow: hidden;
+}
+
+/*Shopping Cart Section*/
+.SC-S{
+  width: 650px;
+}
+
+/*Order Completer Board img*/
+.OC-B-img2{
+  margin-top: 710px;
+}
+
+/*Heckto Demo Products*/
+.HD-P{
+  width: 400px;
+}
+
+/*Heckto Demo*/
+.HD{
+  width: 700px;
+}
+
+/*Login Section*/
+.LS{
+  width: 450px;
+  height: 458px;
+}
+
+/*Blog Page img 1*/
+.BP-img{
+  width: 770px;
+  height: 450px;
+}
+
+/*Single Blog Video*/
+.SB-V{
+  width: 370px;
+  height: 200px;
+}
+
+/*Single Blog img*/
+.SB-I{
+  width: 370px;
+  height: 200px;
+}
+
+/*Single Blog Left Side Products*/
+.SB-LS-P-img{
+  width: 180px;
+  height: 210px;
+  overflow: hidden;
+}
+
+/*Single Blog Left Blog Post*/
+.LS-BP{
+  width: 660px;
+}
+
+/*Single Blog Left Blog Post img*/
+.LS-BP-img{
+  width: 100px;
+  height: 105px;
+}
+/*Single Blog Left Comment Section*/
+.SB-L-CS{
+  width: 664px;
+}
+
+/*Our Client Section*/
+.OCS-S{
+  background-color: #f7fbfe;
+  width: full;
+  height: auto;
+}
+
+/*Contact Us Get In Touch-Subject-Message*/
+.GIT-S-M{
+  width: 496px;
+}
