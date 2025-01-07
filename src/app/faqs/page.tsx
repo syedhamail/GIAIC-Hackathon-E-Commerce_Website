@@ -9,130 +9,129 @@ export default function FAQs() {
     <main>
       <Header />
 
-      {/*Hero Section*/}
+      {/* Hero Section */}
 
-      <div className="HS-SLSB-SL-SGD">
-        <span>
-          <h1 className="ml-60 pt-24 text-4xl font-bold">FAQs</h1>
-          <h1 className="flex ml-60 mt-3 pb-28 text-sm font-bold">
-            <Link href={"/"}>Home</Link>
-            <p className="ml-3">Pages</p>
-            <p className="ml-3 text-pink-400">FAQs</p>
+      <div className="bg-[#cde7ff] w-full py-12 md:py-24">
+        <div className="container mx-auto px-4 sm:px-8">
+          {/* Heading */}
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center md:text-left">
+            FAQs
           </h1>
-        </span>
+
+          {/* Breadcrumb */}
+          <div className="flex justify-center md:justify-start mt-3 space-x-2 text-sm font-bold">
+            <Link href="/" className="text-black hover:text-pink-400">
+              Home
+            </Link>
+            <span className="text-gray-500">/</span>
+            <p className="text-black">Pages</p>
+            <span className="text-gray-500">/</span>
+            <p className="text-pink-400">FAQs</p>
+          </div>
+        </div>
       </div>
 
-      {/*FAQs Section*/}
+      {/* FAQs Section */}
+      <section className="py-16 mt-5 lg:mt-10">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col lg:flex-row justify-center lg:space-x-40">
+            {/* Left Section - General Info */}
+            <div className="w-full lg:w-1/2">
+              <h1 className="text-blue-900 text-2xl font-sans font-bold">
+                General Information
+              </h1>
 
-      <section className="flex justify-center space-x-40 mt-24">
-        {/*Left Section*/}
+              {/* FAQ Items */}
+              <div className="mt-10">
+                <div className="mb-10">
+                  <h1 className="text-blue-900 font-sans font-medium">
+                    Eu dictumst cum at sed euismood condimentum?
+                  </h1>
+                  <p className="text-sm text-gray-400 font-sans font-medium mt-4">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Tincidunt sed tristique mollis vitae, consequat gravida
+                    sagittis.
+                  </p>
+                </div>
 
-        {/*General Info*/}
+                <div className="mb-10">
+                  <h1 className="text-blue-900 font-sans font-medium">
+                    Magna bibendum est fermentum eros.
+                  </h1>
+                  <p className="text-sm text-gray-400 font-sans font-medium mt-4">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Tincidunt sed tristique mollis vitae, consequat gravida
+                    sagittis.
+                  </p>
+                </div>
 
-        <div>
-          <h1 className="text-blue-900 text-2xl font-sans font-bold">
-            Generel Information
-          </h1>
+                <div className="mb-10">
+                  <h1 className="text-blue-900 font-sans font-medium">
+                    Odio muskana hak eris conseekin sceleton?
+                  </h1>
+                  <p className="text-sm text-gray-400 font-sans font-medium mt-4">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Tincidunt sed tristique mollis vitae, consequat gravida
+                    sagittis.
+                  </p>
+                </div>
 
-          <span>
-            <h1 className="text-blue-900 font-sans font-medium mt-10">
-              Eu dictumst cum at sed euismood condimentum?
-            </h1>
-            <p className="text-sm text-gray-400 font-sans font-medium leading-[1.6] mt-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt
-              sed
-              <br />
-              tristique mollis vitae, consequat gravida sagittis.
-            </p>
-          </span>
+                <div className="mb-10">
+                  <h1 className="text-blue-900 font-sans font-medium">
+                    Elit id blandit sabara boi velit gua mara?
+                  </h1>
+                  <p className="text-sm text-gray-400 font-sans font-medium mt-4">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Tincidunt sed tristique mollis vitae, consequat gravida
+                    sagittis.
+                  </p>
+                </div>
+              </div>
+            </div>
 
-          <span>
-            <h1 className="text-blue-900 font-sans font-medium mt-10">
-              Magna bibendum est fermentum eros.
-            </h1>
-            <p className="text-sm text-gray-400 font-sans font-medium leading-[1.6] mt-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt
-              sed
-              <br />
-              tristique mollis vitae, consequat gravida sagittis.
-            </p>
-          </span>
+            {/* Right Section - Ask a Question */}
+            <div className="w-full lg:w-1/2 bg-gray-50 mt-10 lg:mt-0">
+              <div className="p-6 lg:p-10">
+                <h1 className="text-blue-900 text-2xl font-sans font-bold">
+                  Ask a Question
+                </h1>
 
-          <span>
-            <h1 className="text-blue-900 font-sans font-medium mt-10">
-              Odio muskana hak eris conseekin sceleton?
-            </h1>
-            <p className="text-sm text-gray-400 font-sans font-medium leading-[1.6] mt-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt
-              sed
-              <br />
-              tristique mollis vitae, consequat gravida sagittis.
-            </p>
-          </span>
+                {/* Form */}
+                <div className="mt-10">
+                  <input
+                    type="text"
+                    placeholder="Your Name*"
+                    className="w-full h-11 pl-3 text-sm font-sans bg-white border-2 border-gray-300 text-black rounded mb-6"
+                  />
 
-          <span>
-            <h1 className="text-blue-900 font-sans font-medium mt-10">
-              Elit id blandit sabara boi velit gua mara?
-            </h1>
-            <p className="text-sm text-gray-400 font-sans font-medium leading-[1.6] mt-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt
-              sed
-              <br />
-              tristique mollis vitae, consequat gravida sagittis.
-            </p>
-          </span>
-        </div>
+                  <input
+                    type="text"
+                    placeholder="Subject*"
+                    className="w-full h-11 pl-3 text-sm font-sans bg-white border-2 border-gray-300 text-black rounded mb-6"
+                  />
 
-        {/*Right Section*/}
+                  <textarea
+                    placeholder="Type Your Message*"
+                    className="w-full h-40 pl-3 pt-3 text-sm font-sans bg-white border-2 border-gray-300 text-black rounded"
+                  ></textarea>
 
-        {/*Ask a Question*/}
-
-        <div className="bg-gray-50">
-          <div className="mt-10 ml-9 mr-16 mb-14">
-            <h1 className="text-blue-900 text-2xl font-sans font-bold">
-              Ask a Question
-            </h1>
-
-            <span className="flex items-center mt-24">
-              <input
-                type="text"
-                placeholder="Your Name*"
-                className="w-80 h-11 pl-3 text-sm flex items-center font-sans bg-white border-2 border-gray-300 text-black rounded"
-              />
-            </span>
-
-            <span className="flex items-center mt-8">
-              <input
-                type="text"
-                placeholder="Subject*"
-                className="w-80 h-11 pl-3 text-sm flex items-center font-sans bg-white border-2 border-gray-300 text-black rounded"
-              />
-            </span>
-
-            <span className="flex items-center mt-10">
-              <input
-                type="text"
-                placeholder="Type Your Message*"
-                className="w-80 h-40 pb-28 pl-3 text-sm flex items-center font-sans bg-white border-2 border-gray-300 text-black rounded"
-              />
-            </span>
-
-            <button className="bg-pink-500 text-white font-sans text-sm px-9 py-2.5 font-medium rounded mt-10 hover:bg-pink-600">
-              Send Mail
-            </button>
+                  <button className="bg-pink-500 text-white font-sans text-sm px-9 py-2.5 font-medium rounded mt-6 hover:bg-pink-600 transition duration-300">
+                    Send Mail
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/*As seen in*/}
-
-      <div className="flex ml-7 mt-10">
-        <div>
+      {/* As Seen In */}
+      <div className="flex justify-center mt-10 px-4 sm:px-6 lg:px-8">
+        <div className="w-full">
           <img
-            src="https://s3-alpha-sig.figma.com/img/8b8f/73ef/0917d8479a5c41ee633cb4a6233f64b7?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QtaRKpQa58WhEx4WrkNOgoy~DA7m~EQ8fu8mUxFJJfoEaDtCLkbgc85Ygc2VZoQs70W8Ug8Ug8Jw6a96P6VprhRBwfKdV-1AQXcHED382XyT06z7PZifBj1KO6xZ1C2ycZX73UBgXQabRkkKcr0UxuOg2wYx-BeQThti-Hk~gTepLRdGmeosHD4Q9c9nTCVua1PoE4h2BC0rmplIMUVB7f~48i4h5XU2MBkNg7Ur~6KsuqrUikMGwDv2aEOwU2MnLeEdLugQq0oZQBTdjszsEr7aCuS~GyJhrqqMIp7u21~YXEcpls9GBKu0wBI6IXy3eFDZ1VsenJsV6xY0o05UBQ__"
-            alt="adidas"
-            className="mt-14 ml-52"
-            width={850}
+            src="/images/AsSeenIn-img.png"
+            alt="As Seen In"
+            className="w-full h-auto mt-14"
           />
         </div>
       </div>
@@ -142,7 +141,6 @@ export default function FAQs() {
       <div className="mt-20">
         <Footer />
       </div>
-
     </main>
   );
 }

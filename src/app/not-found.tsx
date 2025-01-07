@@ -9,47 +9,52 @@ export default function NotFoundPage() {
     <main>
       <Header />
 
-      {/*Hero Section*/}
+      {/* Hero Section */}
 
-      <div className="HS-SLSB-SL-SGD">
-        <span>
-          <h1 className="ml-60 pt-24 text-4xl font-bold">404 Not Found</h1>
-          <h1 className="flex ml-60 mt-3 pb-28 text-sm font-bold">
-            <Link href={"/"}>Home</Link>
-
-            <p className="ml-3 text-pink-400">404 Not Found</p>
-          </h1>
-        </span>
-      </div>
-
-      {/*404 Section*/}
-
-      <div className="flex justify-center mt-28">
-        <span>
-          <img src="/images/404-img.png" alt="" />
-
-          <h1 className="flex justify-center text-blue-900 text-2xl font-sans font-bold mt-3">
-            ooPs! The page you requested was not found!
+      <div className="bg-[#cde7ff] w-full py-12 md:py-24">
+        <div className="container mx-auto px-4 sm:px-8">
+          {/* Heading */}
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center md:text-left">
+            404 Not Found
           </h1>
 
-          <button
-            onClick={() => (window.location.href = "/")}
-            className="mt-12 ml-64 px-6 py-2.5 bg-pink-500 text-white font-medium font-sans rounded-md hover:bg-pink-600"
-          >
-            Back To Home
-          </button>
-        </span>
+          {/* Breadcrumb */}
+          <div className="flex justify-center md:justify-start mt-3 space-x-2 text-sm font-bold">
+            <Link href="/" className="text-black hover:text-pink-400">
+              Home
+            </Link>
+            <span className="text-gray-500">/</span>
+            <p className="text-pink-400">404 Not Found</p>
+          </div>
+        </div>
       </div>
 
-      {/*As seen in*/}
+      {/* 404 Section */}
 
-      <div className="flex ml-7 mt-12">
-        <div>
+      <div className="flex flex-col items-center mt-20 px-4">
+        <img
+          src="/images/404-img.png"
+          alt="404 Not Found"
+          className="max-w-full h-auto"
+        />
+        <h1 className="text-blue-900 text-center text-2xl font-sans font-bold mt-6">
+          ooPs! The page you requested was not found!
+        </h1>
+        <button
+          onClick={() => (window.location.href = "/")}
+          className="mt-8 px-6 py-2.5 bg-pink-500 text-white font-medium font-sans rounded-md hover:bg-pink-600 transition"
+        >
+          Back To Home
+        </button>
+      </div>
+
+      {/* As Seen In */}
+      <div className="flex justify-center mt-14 px-4 sm:px-6 lg:px-8">
+        <div className="w-full">
           <img
-            src="https://s3-alpha-sig.figma.com/img/8b8f/73ef/0917d8479a5c41ee633cb4a6233f64b7?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QtaRKpQa58WhEx4WrkNOgoy~DA7m~EQ8fu8mUxFJJfoEaDtCLkbgc85Ygc2VZoQs70W8Ug8Ug8Jw6a96P6VprhRBwfKdV-1AQXcHED382XyT06z7PZifBj1KO6xZ1C2ycZX73UBgXQabRkkKcr0UxuOg2wYx-BeQThti-Hk~gTepLRdGmeosHD4Q9c9nTCVua1PoE4h2BC0rmplIMUVB7f~48i4h5XU2MBkNg7Ur~6KsuqrUikMGwDv2aEOwU2MnLeEdLugQq0oZQBTdjszsEr7aCuS~GyJhrqqMIp7u21~YXEcpls9GBKu0wBI6IXy3eFDZ1VsenJsV6xY0o05UBQ__"
-            alt="adidas"
-            className="mt-14 ml-52"
-            width={850}
+            src="/images/AsSeenIn-img.png"
+            alt="As Seen In"
+            className="w-full h-auto mt-14"
           />
         </div>
       </div>
@@ -59,7 +64,6 @@ export default function NotFoundPage() {
       <div className="mt-20">
         <Footer />
       </div>
-
     </main>
   );
 }

@@ -22,54 +22,82 @@ export default function ShopLeftSidebar() {
     setIsOpen(false); // Close the dropdown
   };
 
-  const [isWishlist, setIsWishlist] = useState(false); // State to manage wishlist color
-  const [isWishlist2, setIsWishlist2] = useState(false);
-  const [isWishlist3, setIsWishlist3] = useState(false);
-  const [isWishlist4, setIsWishlist4] = useState(false);
-  const [isWishlist5, setIsWishlist5] = useState(false);
-  const [isWishlist6, setIsWishlist6] = useState(false);
-  const [isWishlist7, setIsWishlist7] = useState(false);
+  // Wishlist states for each product with proper type definition
+  type Wishlist = {
+    [key: number]: boolean; // Index signature for dynamic keys (number type)
+  };
+
+  const [wishlist, setWishlist] = useState<Wishlist>({
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false,
+    6: false,
+    7: false,
+  });
+
+  // Toggle wishlist function
+  const toggleWishlist = (productId: number) => {
+    setWishlist((prev) => ({
+      ...prev,
+      [productId]: !prev[productId], // Dynamic key usage
+    }));
+  };
 
   return (
     <main>
       <Header />
 
-      {/*Hero Section*/}
-
-      <div className="HS-SLSB-SL-SGD">
-        <span>
-          <h1 className="ml-60 pt-24 text-4xl font-bold">Shop Left Sidebar</h1>
-          <h1 className="flex ml-60 mt-3 pb-28 text-sm font-bold">
-            <Link href={"/"}>Home</Link>
-            <p className="ml-3">Shop</p>
-            <p className="ml-3 text-pink-400">Shop Left Sidebar</p>
+      {/* Hero Section */}
+      <div className="bg-[#cde7ff] w-full py-12 md:py-24">
+        <div className="container mx-auto px-4 sm:px-8">
+          {/* Heading */}
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center md:text-left">
+            Shop Left Sidebar
           </h1>
-        </span>
+
+          {/* Breadcrumb */}
+          <div className="flex justify-center md:justify-start mt-3 space-x-2 text-sm font-bold">
+            <Link href="/" className="text-black hover:text-pink-400">
+              Home
+            </Link>
+            <span className="text-gray-500">/</span>
+            <p className="text-black">Shop</p>
+            <span className="text-gray-500">/</span>
+            <p className="text-pink-400">Shop Left Sidebar</p>
+          </div>
+        </div>
       </div>
 
       {/*Products Section*/}
       <section className=" mt-24 ">
-        
-        {/*Heading*/}
-        <div className="flex">
-
-          <span className="ml-24">
+        {/* Heading Section */}
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center px-4 sm:px-8 py-4">
+          {/* Left Section */}
+          <div className="mb-4 sm:mb-0">
             <h1 className="text-xl font-bold text-gray-800">
               Ecommerce Accessories & Fashion Item
             </h1>
-            <p className="text-gray-500 text-xs">
+            <p className="text-gray-500 text-xs mt-1">
               About 9,620 results (0.62 seconds)
             </p>
-          </span>
+          </div>
 
-          <span className="pl-32 flex text-slate-600">
-            <h1 className="flex items-center text-sm">
-              Per Page:
-              <input type="text" className="bg-white border w-14 h-6 ml-2" />
-            </h1>
+          {/* Right Section */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 md:ml-16">
+            {/* Per Page Input */}
+            <div className="flex items-center">
+              <h1 className="text-sm text-slate-600">Per Page:</h1>
+              <input
+                type="text"
+                className="bg-white border w-14 h-6 ml-2 px-2 text-sm rounded"
+              />
+            </div>
 
-            <div className="flex ml-8 items-center">
-              <h1 className="flex items-center text-sm">Sort By:</h1>
+            {/* Sort By Dropdown */}
+            <div className="flex items-center">
+              <h1 className="text-sm text-slate-600">Sort By:</h1>
               <div className="relative inline-block text-left ml-2">
                 {/* Dropdown Button */}
                 <button
@@ -126,190 +154,172 @@ export default function ShopLeftSidebar() {
               </div>
             </div>
 
-            <h1 className="flex items-center ml-8 text-sm">
-              View:
-              <CgLayoutGrid className="w-6 h-6" />
-              <FaListUl className="w-3" />
-              <input type="text" className="bg-white border w-32 h-6 ml-4" />
-            </h1>
-          </span>
+            {/* View Options */}
+            <div className="flex items-center">
+              <h1 className="text-sm text-slate-600">View:</h1>
+              <CgLayoutGrid className="w-6 h-6 ml-2 text-gray-600 cursor-pointer hover:text-pink-500" />
+              <FaListUl className="w-4 h-4 ml-2 text-gray-600 cursor-pointer hover:text-pink-500" />
+              <input
+                type="text"
+                className="bg-white border w-32 h-6 ml-4 px-2 text-sm rounded"
+              />
+            </div>
+          </div>
         </div>
 
         {/*Products*/}
-        <div className="flex ml-20 mt-16">
-          {/*Left Side Filters Section */}
-
-          <div className="w-1/4 p-4 rounded">
-            {/*Product Brand Section*/}
+        <div className="flex flex-col lg:flex-row lg:ml-20 mt-16 p-4 lg:p-0">
+          {/* Left Side Filters Section */}
+          <div className="w-full lg:w-1/4 p-4 rounded bg-gray-50 lg:bg-transparent mb-8 lg:mb-0">
+            {/* Product Brand Section */}
             <h2 className="font-bold text-blue-900 text-lg mb-4 border-b-2 w-32 border-black">
               Product Brand
             </h2>
             <ul className="space-y-2">
-              <li className="flex items-center text-gray-400 text-sm">
-                <TiTick className="bg-gray-300 text-blue-900 w-4 mr-2" />
-                Coaster Furniture
-              </li>
-              <li className="flex items-center text-gray-400 text-sm">
-                <TiTick className="bg-gray-300 text-blue-900 w-4 mr-2" />
-                Fusion Dot High Fashion
-              </li>
-              <li className="flex items-center text-gray-400 text-sm">
-                <TiTick className="bg-blue-900 text-white w-4 mr-2" />
-                Unique Furniture Restore
-              </li>
-              <li className="flex items-center text-gray-400 text-sm">
-                <TiTick className="bg-gray-300 text-blue-900 w-4 mr-2" />
-                Dream Furniture Flipping
-              </li>
-              <li className="flex items-center text-gray-400 text-sm">
-                <TiTick className="bg-gray-300 text-blue-900 w-4 mr-2" />
-                Young Repurposed
-              </li>
-              <li className="flex items-center text-gray-400 text-sm">
-                <TiTick className="bg-gray-300 text-blue-900 w-4 mr-2" />
-                Green DIY furniture
-              </li>
+              {[
+                "Coaster Furniture",
+                "Fusion Dot High Fashion",
+                "Unique Furniture Restore",
+                "Dream Furniture Flipping",
+                "Young Repurposed",
+                "Green DIY furniture",
+              ].map((brand, index) => (
+                <li
+                  key={index}
+                  className="flex items-center text-gray-400 text-sm"
+                >
+                  <TiTick
+                    className={`${
+                      index === 2
+                        ? "bg-blue-900 text-white"
+                        : "bg-gray-300 text-blue-900"
+                    } w-4 mr-2`}
+                  />
+                  {brand}
+                </li>
+              ))}
             </ul>
 
-            {/*Discount Offer Section*/}
-            <h2 className="font-bold text-blue-900 text-lg mt-6 mb-4  border-b-2 w-32 border-black">
+            {/* Discount Offer Section */}
+            <h2 className="font-bold text-blue-900 text-lg mt-6 mb-4 border-b-2 w-32 border-black">
               Discount Offer
             </h2>
             <ul className="space-y-2">
-              <li className="flex items-center text-gray-400 text-sm">
-                <TiTick className="bg-pink-200 text-pink-500 w-4 mr-2" />
-                20% Cashback
-              </li>
-              <li className="flex items-center text-gray-400 text-sm">
-                <TiTick className="bg-pink-200 text-pink-500 w-4 mr-2" />
-                5% Cashback Offer
-              </li>
-              <li className="flex items-center text-gray-400 text-sm">
-                <TiTick className="bg-pink-200 text-pink-500 w-4 mr-2" />
-                25% Discount Offer
-              </li>
+              {["20% Cashback", "5% Cashback Offer", "25% Discount Offer"].map(
+                (offer, index) => (
+                  <li
+                    key={index}
+                    className="flex items-center text-gray-400 text-sm"
+                  >
+                    <TiTick className="bg-pink-200 text-pink-500 w-4 mr-2" />
+                    {offer}
+                  </li>
+                )
+              )}
             </ul>
 
-            {/*Rating Item Section*/}
+            {/* Rating Item Section */}
             <h2 className="font-bold text-blue-900 text-lg mt-6 mb-4 border-b-2 w-28 border-black">
               Rating Item
             </h2>
             <ul className="space-y-2">
-              <li className="flex items-center">
-                <TiTick className="bg-yellow-100 text-yellow-400 w-4 mr-2" />
-                <MdOutlineStar className="text-yellow-500" />
-                <MdOutlineStar className="text-yellow-500" />
-                <MdOutlineStar className="text-yellow-500" />
-                <MdOutlineStar className="text-yellow-500" />
-                <MdOutlineStar className="text-gray-500" />
-                <h1 className="text-sm ml-1 font-bold">(2341)</h1>
-              </li>
-              <li className="flex items-center">
-                <TiTick className="bg-yellow-400 text-white w-4 mr-2" />
-                <MdOutlineStar className="text-yellow-500" />
-                <MdOutlineStar className="text-yellow-500" />
-                <MdOutlineStar className="text-yellow-500" />
-                <MdOutlineStar className="text-gray-500" />
-                <MdOutlineStar className="text-gray-500" />
-                <h1 className="text-sm ml-1 font-bold">(1726)</h1>
-              </li>
-              <li className="flex items-center">
-                <TiTick className="bg-yellow-100 text-yellow-400 w-4 mr-2" />
-                <MdOutlineStar className="text-yellow-500" />
-                <MdOutlineStar className="text-yellow-500" />
-                <MdOutlineStar className="text-gray-500" />
-                <MdOutlineStar className="text-gray-500" />
-                <MdOutlineStar className="text-gray-500" />
-                <h1 className="text-sm ml-1 font-bold">(258)</h1>
-              </li>
-              <li className="flex items-center">
-                <TiTick className="bg-yellow-100 text-yellow-400 w-4 mr-2" />
-                <MdOutlineStar className="text-yellow-500" />
-                <MdOutlineStar className="text-yellow-500" />
-                <MdOutlineStar className="text-gray-500" />
-                <MdOutlineStar className="text-gray-500" />
-                <MdOutlineStar className="text-gray-500" />
-                <h1 className="text-sm ml-1 font-bold">(25)</h1>
-              </li>
+              {[
+                { stars: 4, count: 2341 },
+                { stars: 3, count: 1726 },
+                { stars: 2, count: 258 },
+                { stars: 2, count: 25 },
+              ].map((rating, index) => (
+                <li key={index} className="flex items-center">
+                  <TiTick
+                    className={`${
+                      index === 1
+                        ? "bg-yellow-400 text-white"
+                        : "bg-yellow-100 text-yellow-400"
+                    } w-4 mr-2`}
+                  />
+                  {[...Array(5)].map((_, i) => (
+                    <MdOutlineStar
+                      key={i}
+                      className={`${
+                        i < rating.stars ? "text-yellow-500" : "text-gray-500"
+                      }`}
+                    />
+                  ))}
+                  <h1 className="text-sm ml-1 font-bold">({rating.count})</h1>
+                </li>
+              ))}
             </ul>
 
-            {/* Categories Section*/}
+            {/* Categories Section */}
             <h2 className="font-bold text-blue-900 text-lg mt-6 mb-4 border-b-2 w-24 border-black">
               Categories
             </h2>
             <ul className="space-y-2">
-              <li className="flex items-center text-gray-400 text-sm">
-                <TiTick className="bg-pink-200 text-pink-500 w-4 mr-2" />
-                Prestashop
-              </li>
-              <li className="flex items-center text-gray-400 text-sm">
-                <TiTick className="bg-pink-200 text-pink-500 w-4 mr-2" />
-                Magento
-              </li>
-              <li className="flex items-center text-gray-400 text-sm">
-                <TiTick className="bg-pink-500 text-white w-4 mr-2" />
-                Bigcommerce
-              </li>
-              <li className="flex items-center text-gray-400 text-sm">
-                <TiTick className="bg-pink-200 text-pink-500 w-4 mr-2" />
-                osCommerce
-              </li>
-              <li className="flex items-center text-gray-400 text-sm">
-                <TiTick className="bg-pink-200 text-pink-500 w-4 mr-2" />
-                3dcart
-              </li>
-              <li className="flex items-center text-gray-400 text-sm">
-                <TiTick className="bg-pink-200 text-pink-500 w-4 mr-2" />
-                Bags
-              </li>
-              <li className="flex items-center text-gray-400 text-sm">
-                <TiTick className="bg-pink-200 text-pink-500 w-4 mr-2" />
-                Accessories
-              </li>
-              <li className="flex items-center text-gray-400 text-sm">
-                <TiTick className="bg-pink-200 text-pink-500 w-4 mr-2" />
-                Jewellery
-              </li>
-              <li className="flex items-center text-gray-400 text-sm">
-                <TiTick className="bg-pink-200 text-pink-500 w-4 mr-2" />
-                Watches
-              </li>
+              {[
+                "Prestashop",
+                "Magento",
+                "Bigcommerce",
+                "osCommerce",
+                "3dcart",
+                "Bags",
+                "Accessories",
+                "Jewellery",
+                "Watches",
+              ].map((category, index) => (
+                <li
+                  key={index}
+                  className="flex items-center text-gray-400 text-sm"
+                >
+                  <TiTick
+                    className={`${
+                      index === 2
+                        ? "bg-pink-500 text-white"
+                        : "bg-pink-200 text-pink-500"
+                    } w-4 mr-2`}
+                  />
+                  {category}
+                </li>
+              ))}
             </ul>
 
-            {/*Price Filter Section*/}
-            <h2 className="font-bold text-blue-900 text-lg mt-6 mb-4  border-b-2 w-24 border-black">
+            {/* Price Filter Section */}
+            <h2 className="font-bold text-blue-900 text-lg mt-6 mb-4 border-b-2 w-24 border-black">
               Price Filter
             </h2>
             <ul className="space-y-2">
-              <li className="flex items-center text-gray-400 text-sm">
-                <TiTick className="bg-pink-200 text-pink-500 w-4 mr-2" />
-                $0.00 - $150.00
-              </li>
-              <li className="flex items-center text-gray-400 text-sm">
-                <TiTick className="bg-pink-200 text-pink-500 w-4 mr-2" />
-                $150.00 - $350.00
-              </li>
-              <li className="flex items-center text-gray-400 text-sm">
-                <TiTick className="bg-pink-500 text-white w-4 mr-2" />
-                $150.00 - $504.00
-              </li>
-              <li className="flex items-center text-gray-400 text-sm">
-                <TiTick className="bg-pink-200 text-pink-500 w-4 mr-2" />
-                $450.00 +
-              </li>
+              {[
+                "$0.00 - $150.00",
+                "$150.00 - $350.00",
+                "$150.00 - $504.00",
+                "$450.00 +",
+              ].map((price, index) => (
+                <li
+                  key={index}
+                  className="flex items-center text-gray-400 text-sm"
+                >
+                  <TiTick
+                    className={`${
+                      index === 2
+                        ? "bg-pink-500 text-white"
+                        : "bg-pink-200 text-pink-500"
+                    } w-4 mr-2`}
+                  />
+                  {price}
+                </li>
+              ))}
               <li className="flex items-center pt-2">
                 <input
                   type="search"
-                  placeholder="$10.00 - $20000 "
-                  className="text-sm bg-white w-40 h-8 border-t-2 border-b-2 border-l-2 "
+                  placeholder="$10.00 - $20000"
+                  className="text-sm bg-white w-40 h-8 border-t-2 border-b-2 border-l-2"
                 />
-                <IoIosSearch className="bg-white text-gray-300 border-t-2 border-b-2 border-r-2 w-9 h-8 px-2 " />
+                <IoIosSearch className="bg-white text-gray-300 border-t-2 border-b-2 border-r-2 w-9 h-8 px-2" />
               </li>
             </ul>
 
-            {/*Filter By Color Section*/}
-            <h2 className="font-bold text-blue-900 text-lg mt-6 mb-4  border-b-2 w-24 border-black">
-              Price Filter
+            {/* Filter By Color Section */}
+            <h2 className="font-bold text-blue-900 text-lg mt-6 mb-4 border-b-2 w-24 border-black">
+              Filter By Color
             </h2>
             <ul className="space-y-2">
               <li className="flex items-center text-gray-400 text-sm">
@@ -331,515 +341,154 @@ export default function ShopLeftSidebar() {
             </ul>
           </div>
 
-          {/*Right Side Section */}
+          {/* Right Side Products Section */}
+          <div className="w-full lg:w-3/4">
+            {[
+              {
+                id: 1,
+                image: "/images/SLS-img1.jpg",
+                title: "Dictum morbi",
+                price: "$26.00",
+                oldPrice: "$52.00",
+                rating: 4,
+              },
+              {
+                id: 2,
+                image: "/images/RS-P2-img.jpg",
+                title: "Sodales sit",
+                price: "$26.00",
+                oldPrice: "$52.00",
+                rating: 4,
+              },
+              {
+                id: 3,
+                image: "/images/SLS-img3.jpg",
+                title: "Nibh varius",
+                price: "$26.00",
+                oldPrice: "$52.00",
+                rating: 4,
+              },
+              {
+                id: 4,
+                image: "/images/SLS-img4.jpg",
+                title: "Mauris quis",
+                price: "$26.00",
+                oldPrice: "$52.00",
+                rating: 4,
+              },
+              {
+                id: 5,
+                image: "/images/SLS-img5.jpg",
+                title: "Morbi sagittis",
+                price: "$26.00",
+                oldPrice: "$52.00",
+                rating: 4,
+              },
+              {
+                id: 6,
+                image: "/images/SLS-img6.jpg",
+                title: "Ultricies venenatis",
+                price: "$26.00",
+                oldPrice: "$52.00",
+                rating: 4,
+              },
+              {
+                id: 7,
+                image: "/images/SLS-img7.jpg",
+                title: "Scelerisque dignissim",
+                price: "$26.00",
+                oldPrice: "$52.00",
+                rating: 4,
+              },
+            ].map((product) => (
+              <div
+                key={product.id}
+                className="flex flex-col lg:flex-row bg-white rounded-lg shadow-md mt-5 p-4"
+              >
+                {/* Image Section */}
+                <div className="w-full lg:w-[210px] lg:h-[160px] overflow-hidden rounded-lg flex">
+                  <img
+                    src={product.image}
+                    alt="Product"
+                    className="rounded-lg object-cover w-full h-48 lg:h-auto"
+                  />
+                </div>
 
-        <div>
-          {/*Right Side Product 1 */}
-          <div className="RS-S flex bg-white rounded-lg shadow-md  mt-5 p-4 items-start space-x-4">
-            {/* Image Section */}
-            <div className="w-1/4">
-              <img
-                src="https://s3-alpha-sig.figma.com/img/2798/77cf/d5ac5b61435d9eb1856f6203b2e4ca60?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QDoGrZaOVZLJC6exx36oH39mVLDkXbeE20C7PimiJbGvuWxqAbFJdRi7uc0CKIl-f-amTrw7hmyQgt0VHP9t6vY0a88MOxwqAZ-zvHMqTruhjD-px52HLSv1l02MM-ETw9~34SkZl8I0MtDI1GjhOIMCATGIre5stKqlxwSioZorLk0t878WyDc3CNayVnYxhw5LX0b~snhZGxThn0rf2Bz8d23X1nOXlA1A5Wt5I3wL6ACbKf-8VBi07-LrxluAwh~Ae-VvADW8cc9n7~wEXpfTi5DuwqX8a9B4LfQ4FHV52PlT7OT5ga6rXTLtE4A4L8I2j-KRPNqEgFh0v7nqVg__"
-                alt="Product"
-                className="rounded-lg object-cover RS-P-img"
-              />
-            </div>
+                {/* Content Section */}
+                <div className="w-full lg:w-3/4 lg:pl-4 mt-4 lg:mt-0">
+                  {/* Product Title and Colors */}
+                  <div className="flex justify-between items-center">
+                    <h2 className="text-lg font-bold text-blue-900">
+                      {product.title}
+                    </h2>
+                    <div className="flex space-x-2">
+                      <span className="w-3 h-3 rounded-full bg-yellow-600"></span>
+                      <span className="w-3 h-3 rounded-full bg-red-600"></span>
+                      <span className="w-3 h-3 rounded-full bg-blue-600"></span>
+                    </div>
+                  </div>
 
-            {/* Content Section */}
-            <div className="w-2/3">
-              {/* Product Title and Colors */}
-              <div className="flex justify-betwee items-center">
-                <h2 className="text-lg font-bold text-blue-900">
-                  Dictum morbi
-                </h2>
-                <div className="flex space-x-2 ml-10">
-                  <span className="w-3 h-3 rounded-full bg-yellow-600"></span>
-                  <span className="w-3 h-3 rounded-full bg-red-600"></span>
-                  <span className="w-3 h-3 rounded-full bg-blue-600"></span>
+                  {/* Price and Rating */}
+                  <div className="flex items-center space-x-2 mt-2">
+                    <p className="text-sm font-bold text-gray-800">
+                      {product.price}
+                    </p>
+                    <del className="text-sm text-pink-500 line-through">
+                      {product.oldPrice}
+                    </del>
+                    <div className="flex space-x-1 pl-2">
+                      {[...Array(5)].map((_, i) => (
+                        <span
+                          key={i}
+                          className={`${
+                            i < product.rating
+                              ? "text-yellow-500"
+                              : "text-gray-400"
+                          }`}
+                        >
+                          ★
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Product Description */}
+                  <p className="text-gray-400 font-sans text-sm mt-2">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Magna in est adipiscing in phasellus non in justo.
+                  </p>
+
+                  {/* Icons Section */}
+                  <div className="flex space-x-4 mt-4 text-gray-500">
+                    <button className="flex items-center space-x-2">
+                      <FiShoppingCart />
+                    </button>
+                    <button
+                      onClick={() => toggleWishlist(product.id)}
+                      className={`flex items-center space-x-2 ${
+                        wishlist[product.id] ? "text-red-500" : ""
+                      }`}
+                    >
+                      <IoMdHeart className="w-5 h-5" />
+                    </button>
+                    <button className="flex items-center space-x-2">
+                      <FaSearchPlus />
+                    </button>
+                  </div>
                 </div>
               </div>
-
-              {/* Price and Rating */}
-              <div className="flex items-center space-x-2 mt-2">
-                <p className="text-sm font-bold text-gray-800">$26.00</p>
-                <del className="text-sm text-pink-500 line-through">$52.00</del>
-                <div className="flex space-x-1 pl-2">
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-gray-400">★</span>
-                </div>
-              </div>
-
-              {/* Product Description */}
-              <p className="text-gray-400 font-sans text-sm mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna
-                in est <br />
-                adipiscing in phasellus non in justo.
-              </p>
-
-              {/* Icons Section */}
-              <div className="flex space-x-4 mt-4 text-gray-500 ml-2">
-                {/*Cart*/}
-                <button className="flex items-center space-x-2">
-                  <FiShoppingCart />
-                </button>
-
-                {/*Wishlist*/}
-                <button
-                  onClick={() => setIsWishlist(!isWishlist)} // Toggle wishlist state
-                  className={`flex items-center space-x-2  ${
-                    isWishlist ? "text-red-500" : ""
-                  }`}
-                >
-                  <IoMdHeart className="w-5 h-5 ml-3" />
-                </button>
-
-                {/*Search*/}
-                <button className="flex items-center space-x-2">
-                  <FaSearchPlus className="ml-3" />
-                </button>
-              </div>
-            </div>
+            ))}
           </div>
-            
-          {/*Right Side Product 2 */}
-          <div className="RS-S  flex bg-white rounded-lg shadow-md mt-5 p-4 items-start space-x-4">
-            {/* Image Section */}
-            <div className="w-1/4">
-              <img
-                src="/images/RS-P2-img.jpg"
-                alt="Product"
-                className="rounded-lg object-cover RS-P-img"
-              />
-            </div>
-
-            {/* Content Section */}
-            <div className="w-2/3">
-              {/* Product Title and Colors */}
-              <div className="flex justify-betwee items-center">
-                <h2 className="text-lg font-bold text-blue-900">
-                Sodales sit
-                </h2>
-                <div className="flex space-x-2 ml-10">
-                  <span className="w-3 h-3 rounded-full bg-yellow-600"></span>
-                  <span className="w-3 h-3 rounded-full bg-red-600"></span>
-                  <span className="w-3 h-3 rounded-full bg-blue-600"></span>
-                </div>
-              </div>
-
-              {/* Price and Rating */}
-              <div className="flex items-center space-x-2 mt-2">
-                <p className="text-sm font-bold text-gray-800">$26.00</p>
-                <del className="text-sm text-pink-500 line-through">$52.00</del>
-                <div className="flex space-x-1 pl-2">
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-gray-400">★</span>
-                </div>
-              </div>
-
-              {/* Product Description */}
-              <p className="text-gray-400 font-sans text-sm mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna
-                in est <br />
-                adipiscing in phasellus non in justo.
-              </p>
-
-              {/* Icons Section */}
-              <div className="flex space-x-4 mt-4 text-gray-500 ml-2">
-                {/*Cart*/}
-                <button className="flex items-center space-x-2">
-                  <FiShoppingCart />
-                </button>
-
-                {/*Wishlist*/}
-                <button
-                  onClick={() => setIsWishlist2(!isWishlist2)} // Toggle wishlist state
-                  className={`flex items-center space-x-2  ${
-                    isWishlist2 ? "text-red-500" : ""
-                  }`}
-                >
-                  <IoMdHeart className="w-5 h-5 ml-3" />
-                </button>
-
-                {/*Search*/}
-                <button className="flex items-center space-x-2">
-                  <FaSearchPlus className="ml-3" />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/*Right Side Product 3 */}
-          <div className="RS-S  flex bg-white rounded-lg shadow-md mt-5 p-4 items-start space-x-4">
-            {/* Image Section */}
-            <div className="w-1/4">
-              <img
-                src="https://s3-alpha-sig.figma.com/img/9821/f938/4214ad603d74e99f5c18f3b963d1f053?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Ecv5Cvy7S4vYjTVDjOE9eQsbWtNotUm279eRL-FpsNVrqRsrwRANJ6jU~IFjTsAatOLW2KHMjHx5qHXIABcskmaiGb3Bkli~UziOTvNHdrUdFJ8LNDmYTUSzkHNt8R5HPa9FdSyNIbk866F6AFOOFgrsARduT334aMLXIgiH~cxvxYYjs56iA8Y3D8gObR1iuGz07uHhyX~LefEa46cMWJCwi4foWgIVFDrfRBtrTpWaLwThsD4tyZ5IHTYIpx1SLW9PJgUCy25Tael7~Vohd8~1Q6pV1QosPQnRtcCuF~KdgTa6qMrbvEvrB4D1zvj9JvRSe9DFp~eiaGs1U4uT3w__"
-                alt="Product"
-                className="rounded-lg object-cover RS-P-img"
-              />
-            </div>
-
-            {/* Content Section */}
-            <div className="w-2/3">
-              {/* Product Title and Colors */}
-              <div className="flex justify-betwee items-center">
-                <h2 className="text-lg font-bold text-blue-900">
-                Nibh varius
-                </h2>
-                <div className="flex space-x-2 ml-10">
-                  <span className="w-3 h-3 rounded-full bg-yellow-600"></span>
-                  <span className="w-3 h-3 rounded-full bg-red-600"></span>
-                  <span className="w-3 h-3 rounded-full bg-blue-600"></span>
-                </div>
-              </div>
-
-              {/* Price and Rating */}
-              <div className="flex items-center space-x-2 mt-2">
-                <p className="text-sm font-bold text-gray-800">$26.00</p>
-                <del className="text-sm text-pink-500 line-through">$52.00</del>
-                <div className="flex space-x-1 pl-2">
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-gray-400">★</span>
-                </div>
-              </div>
-
-              {/* Product Description */}
-              <p className="text-gray-400 font-sans text-sm mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna
-                in est <br />
-                adipiscing in phasellus non in justo.
-              </p>
-
-              {/* Icons Section */}
-              <div className="flex space-x-4 mt-4 text-gray-500 ml-2">
-                {/*Cart*/}
-                <button className="flex items-center space-x-2">
-                  <FiShoppingCart />
-                </button>
-
-                {/*Wishlist*/}
-                <button
-                  onClick={() => setIsWishlist3(!isWishlist3)} // Toggle wishlist state
-                  className={`flex items-center space-x-2  ${
-                    isWishlist3 ? "text-red-500" : ""
-                  }`}
-                >
-                  <IoMdHeart className="w-5 h-5 ml-3" />
-                </button>
-
-                {/*Search*/}
-                <button className="flex items-center space-x-2">
-                  <FaSearchPlus className="ml-3" />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/*Right Side Product 4 */}
-          <div className="RS-S  flex bg-white rounded-lg shadow-md mt-5 p-4 items-start space-x-4">
-            {/* Image Section */}
-            <div className="w-1/4">
-              <img
-                src="https://s3-alpha-sig.figma.com/img/95d3/c0bd/ec2f0d4ea7d38e50758422c175bc0622?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=hdCWvLjzQJj9VpTw81mVNOhK1j-vM6qaeRkEzB3k~Obc0P85d6V9dPwj4NSa41c3LoIPmotl5ICm7nVDC3ZhuvH-O0YaNeBfike5HTCQNiPyakGieY1C4KEmdNGLLFcwRQbqbcbBCFrlWSts14v-0M2QLXH1Wrjo9E66hbI9x8WPLN2g03eYjmc-LqyfX9Pce25KV846jHZoVzxSXizu-ppWd--FdnosMVz~pDe7eOEt2KtqRWfwJ6sjNhhHnk0~-LIJjm3mwHTrgqvENc3MSY0aIk~2ljCpvUxMvpKP4oAZ3~Pl9Qq1w7QpFea5cjaqcgI7~x-MM6X9rJCUTenlOA__"
-                alt="Product"
-                className="rounded-lg object-cover RS-P-img"
-              />
-            </div>
-
-            {/* Content Section */}
-            <div className="w-2/3">
-              {/* Product Title and Colors */}
-              <div className="flex justify-betwee items-center">
-                <h2 className="text-lg font-bold text-blue-900">
-                Mauris quis
-                </h2>
-                <div className="flex space-x-2 ml-10">
-                  <span className="w-3 h-3 rounded-full bg-yellow-600"></span>
-                  <span className="w-3 h-3 rounded-full bg-red-600"></span>
-                  <span className="w-3 h-3 rounded-full bg-blue-600"></span>
-                </div>
-              </div>
-
-              {/* Price and Rating */}
-              <div className="flex items-center space-x-2 mt-2">
-                <p className="text-sm font-bold text-gray-800">$26.00</p>
-                <del className="text-sm text-pink-500 line-through">$52.00</del>
-                <div className="flex space-x-1 pl-2">
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-gray-400">★</span>
-                </div>
-              </div>
-
-              {/* Product Description */}
-              <p className="text-gray-400 font-sans text-sm mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna
-                in est <br />
-                adipiscing in phasellus non in justo.
-              </p>
-
-              {/* Icons Section */}
-              <div className="flex space-x-4 mt-4 text-gray-500 ml-2">
-                {/*Cart*/}
-                <button className="flex items-center space-x-2">
-                  <FiShoppingCart />
-                </button>
-
-                {/*Wishlist*/}
-                <button
-                  onClick={() => setIsWishlist4(!isWishlist4)} // Toggle wishlist state
-                  className={`flex items-center space-x-2  ${
-                    isWishlist4 ? "text-red-500" : ""
-                  }`}
-                >
-                  <IoMdHeart className="w-5 h-5 ml-3" />
-                </button>
-
-                {/*Search*/}
-                <button className="flex items-center space-x-2">
-                  <FaSearchPlus className="ml-3" />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/*Right Side Product 5 */}
-          <div className="RS-S  flex bg-white rounded-lg shadow-md mt-5 p-4 items-start space-x-4">
-            {/* Image Section */}
-            <div className="w-1/4 ">
-              <img
-                src="https://s3-alpha-sig.figma.com/img/6fb6/f3b4/fef960e347563088a94ea7812920ab86?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QxpUMtkWh~MMED5TLrowQHuyPYSxl9uoFgJCjjWIAbTjNIKisyJJh0EhxsKrQwnekbJ4~rT-AZNww96LhpdwqaHAFxPCZQaUONcVFyDtWG3N57xjO16cJDdORx16Xa3r~MdGP36Z~bOq6~tAX-eJ-dFPGWOtXtJe-2O8lPuzlCG0JFYNihUVdtE8XUqSPupXepBtlZB1SAcHikoSyDwdJfwgs~qe613zXX0KKRhbmYKZT914qRMiy2FqUEz9Jpr4kc7NA8PhxE7XauefC732ATCVRS31Q2dMpXmkOQnSKFVJ35k7UMdB2SmQRuso2N4LBAA-ektgkc1lyLqrGRpkuQ__"
-                alt="Product"
-                className="rounded-lg object-cover RS-P-img"
-              />
-            </div>
-
-            {/* Content Section */}
-            <div className="w-2/3">
-              {/* Product Title and Colors */}
-              <div className="flex justify-betwee items-center">
-                <h2 className="text-lg font-bold text-blue-900">
-                Morbi sagittis
-                </h2>
-                <div className="flex space-x-2 ml-10">
-                  <span className="w-3 h-3 rounded-full bg-yellow-600"></span>
-                  <span className="w-3 h-3 rounded-full bg-red-600"></span>
-                  <span className="w-3 h-3 rounded-full bg-blue-600"></span>
-                </div>
-              </div>
-
-              {/* Price and Rating */}
-              <div className="flex items-center space-x-2 mt-2">
-                <p className="text-sm font-bold text-gray-800">$26.00</p>
-                <del className="text-sm text-pink-500 line-through">$52.00</del>
-                <div className="flex space-x-1 pl-2">
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-gray-400">★</span>
-                </div>
-              </div>
-
-              {/* Product Description */}
-              <p className="text-gray-400 font-sans text-sm mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna
-                in est <br />
-                adipiscing in phasellus non in justo.
-              </p>
-
-              {/* Icons Section */}
-              <div className="flex space-x-4 mt-4 text-gray-500 ml-2">
-                {/*Cart*/}
-                <button className="flex items-center space-x-2">
-                  <FiShoppingCart />
-                </button>
-
-                {/*Wishlist*/}
-                <button
-                  onClick={() => setIsWishlist5(!isWishlist5)} // Toggle wishlist state
-                  className={`flex items-center space-x-2  ${
-                    isWishlist5 ? "text-red-500" : ""
-                  }`}
-                >
-                  <IoMdHeart className="w-5 h-5 ml-3" />
-                </button>
-
-                {/*Search*/}
-                <button className="flex items-center space-x-2">
-                  <FaSearchPlus className="ml-3" />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/*Right Side Product 6 */}
-          <div className="RS-S  flex bg-white rounded-lg shadow-md mt-5 p-4 items-start space-x-4">
-            {/* Image Section */}
-            <div className="w-1/4 ">
-              <img
-                src="https://s3-alpha-sig.figma.com/img/0dda/7e5e/91ce04688d47d30605254fba321c2ac4?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=c4fNPI1Ekii99g-OEXkZcF-J8sKQ7m-vMfed3kUMJostVNA9NMepiub6SuVUdy9ZBoZRTvuJM6h2sw~884hSB~RQ7j~TMc4KowU9KpYQ0dEEFflNdjV8mqUDtItQU~onmsZXhVFxYxli87-2HH0AJxSbWnfQkhoXv6VjE0fb8FCBiSPaLEVgHBw42vO-rhUGuLBIZzIwJxv~U1yam17uxEkJdChiwuLSLBjIh1Nz17AvDzrseOUuWYxLSQTQCCGOZ1soKFtjkwvmNmGd9lO0mI6Mx~30dFJ8rhDxo~I8mvU6ZZA7qtVjXmX6XG3lP1G4RENNuheYOwOtSXHhsTXNJA__"
-                alt="Product"
-                className="rounded-lg object-cover RS-P-img"
-              />
-            </div>
-
-            {/* Content Section */}
-            <div className="w-2/3">
-              {/* Product Title and Colors */}
-              <div className="flex justify-betwee items-center">
-                <h2 className="text-lg font-bold text-blue-900">
-                Ultricies venenatis
-                </h2>
-                <div className="flex space-x-2 ml-10">
-                  <span className="w-3 h-3 rounded-full bg-yellow-600"></span>
-                  <span className="w-3 h-3 rounded-full bg-red-600"></span>
-                  <span className="w-3 h-3 rounded-full bg-blue-600"></span>
-                </div>
-              </div>
-
-              {/* Price and Rating */}
-              <div className="flex items-center space-x-2 mt-2">
-                <p className="text-sm font-bold text-gray-800">$26.00</p>
-                <del className="text-sm text-pink-500 line-through">$52.00</del>
-                <div className="flex space-x-1 pl-2">
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-gray-400">★</span>
-                </div>
-              </div>
-
-              {/* Product Description */}
-              <p className="text-gray-400 font-sans text-sm mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna
-                in est <br />
-                adipiscing in phasellus non in justo.
-              </p>
-
-              {/* Icons Section */}
-              <div className="flex space-x-4 mt-4 text-gray-500 ml-2">
-                {/*Cart*/}
-                <button className="flex items-center space-x-2">
-                  <FiShoppingCart />
-                </button>
-
-                {/*Wishlist*/}
-                <button
-                  onClick={() => setIsWishlist6(!isWishlist6)} // Toggle wishlist state
-                  className={`flex items-center space-x-2  ${
-                    isWishlist6 ? "text-red-500" : ""
-                  }`}
-                >
-                  <IoMdHeart className="w-5 h-5 ml-3" />
-                </button>
-
-                {/*Search*/}
-                <button className="flex items-center space-x-2">
-                  <FaSearchPlus className="ml-3" />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/*Right Side Product 7 */}
-          <div className="RS-S  flex bg-white rounded-lg shadow-md mt-5 p-4 items-start space-x-4">
-            {/* Image Section */}
-            <div className="w-1/4 ">
-              <img
-                src="https://s3-alpha-sig.figma.com/img/25e4/5c3e/19fd44bb09bd3e7a5aadae479bd37523?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=YdVkq5nPJGkIkiS5SXKT8zzY882ocfXuMYyLH3QbfTjdTgwa5BhTRDjx546UgG-q4FOPZBjZ5F7wOSm39e39P3w14DjdXQzYRCJARPgGnMp8ahU~pSMn7YO7pzYZYk0fbGqyd3GwhOPlGqNI-bsrozurTW6TNG0x7FJf-ITuK8FYa~K78Ml3pb7BvE0IvRsck7lnbnSjpAX0B5nts6Vj2Yz~ACWZTCxHoAjKdlodCM7GuTV9gHzo86iqhi~ph93jTHh1GNkxCv6u5kSCHz1o2yttqjrisjvAcrSS80T687z28bHbxrg-48xlFgx7grDVD0XqOExisE5OmOc7w17Bzw__"
-                alt="Product"
-                className="rounded-lg object-cover RS-P-img"
-              />
-            </div>
-
-            {/* Content Section */}
-            <div className="w-2/3">
-              {/* Product Title and Colors */}
-              <div className="flex justify-betwee items-center">
-                <h2 className="text-lg font-bold text-blue-900">
-                Scelerisque dignissim
-                </h2>
-                <div className="flex space-x-2 ml-10">
-                  <span className="w-3 h-3 rounded-full bg-yellow-600"></span>
-                  <span className="w-3 h-3 rounded-full bg-red-600"></span>
-                  <span className="w-3 h-3 rounded-full bg-blue-600"></span>
-                </div>
-              </div>
-
-              {/* Price and Rating */}
-              <div className="flex items-center space-x-2 mt-2">
-                <p className="text-sm font-bold text-gray-800">$26.00</p>
-                <del className="text-sm text-pink-500 line-through">$52.00</del>
-                <div className="flex space-x-1 pl-2">
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-yellow-500">★</span>
-                  <span className="text-gray-400">★</span>
-                </div>
-              </div>
-
-              {/* Product Description */}
-              <p className="text-gray-400 font-sans text-sm mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna
-                in est <br />
-                adipiscing in phasellus non in justo.
-              </p>
-
-              {/* Icons Section */}
-              <div className="flex space-x-4 mt-4 text-gray-500 ml-2">
-                {/*Cart*/}
-                <button className="flex items-center space-x-2">
-                  <FiShoppingCart />
-                </button>
-
-                {/*Wishlist*/}
-                <button
-                  onClick={() => setIsWishlist7(!isWishlist7)} // Toggle wishlist state
-                  className={`flex items-center space-x-2  ${
-                    isWishlist7 ? "text-red-500" : ""
-                  }`}
-                >
-                  <IoMdHeart className="w-5 h-5 ml-3" />
-                </button>
-
-                {/*Search*/}
-                <button className="flex items-center space-x-2">
-                  <FaSearchPlus className="ml-3" />
-                </button>
-              </div>
-            </div>
-          </div>
-
         </div>
-
-        </div>
-
       </section>
 
-      {/*As seen in*/}
-
-      <div className="flex ml-7 mt-28">
-
-        <div>
+      {/* As Seen In */}
+      <div className="flex justify-center mt-5 px-4 sm:px-6 lg:px-8">
+        <div className="w-full">
           <img
-            src="https://s3-alpha-sig.figma.com/img/8b8f/73ef/0917d8479a5c41ee633cb4a6233f64b7?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QtaRKpQa58WhEx4WrkNOgoy~DA7m~EQ8fu8mUxFJJfoEaDtCLkbgc85Ygc2VZoQs70W8Ug8Ug8Jw6a96P6VprhRBwfKdV-1AQXcHED382XyT06z7PZifBj1KO6xZ1C2ycZX73UBgXQabRkkKcr0UxuOg2wYx-BeQThti-Hk~gTepLRdGmeosHD4Q9c9nTCVua1PoE4h2BC0rmplIMUVB7f~48i4h5XU2MBkNg7Ur~6KsuqrUikMGwDv2aEOwU2MnLeEdLugQq0oZQBTdjszsEr7aCuS~GyJhrqqMIp7u21~YXEcpls9GBKu0wBI6IXy3eFDZ1VsenJsV6xY0o05UBQ__"
-            alt="adidas"
-            className="mt-14 ml-52"
-            width={850}           
+            src="/images/AsSeenIn-img.png"
+            alt="As Seen In"
+            className="w-full h-auto mt-14"
           />
         </div>
       </div>
@@ -847,9 +496,8 @@ export default function ShopLeftSidebar() {
       {/*Footer*/}
 
       <div className="mt-20">
-      <Footer/>
+        <Footer />
       </div>
-
     </main>
   );
 }
